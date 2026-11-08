@@ -1,0 +1,48 @@
+name: Check upstream release
+author: Tzu-Hsien Chao
+description: Check whether the upstream repostiroy has a newer release than the current one
+branding:
+  icon: refresh-cw
+  color: green
+inputs:
+  upstream-repository:
+    description: The upstream repository
+    required: true
+  current-repository:
+    description: The current repository
+    required: true
+    default: ${{ github.repository }}
+  semver-version-core-regex:
+    description: The regex expression used to match the semver version core (MAJOR.MINOR.PATCH) from the relase tag name
+    required: true
+    default: (0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)
+  if-current-release-not-found:
+    description: >
+      What to do if the current release is not found.
+      Available options:
+        lowest-vserion: use "0.0.0" as the current release version
+        error: fail the action with an error message
+    required: true
+    default: lowest-version
+  token:
+    description: The GitHub token used to make authenticated API requests. Default is ${{ github.token }}
+    required: true
+    default: ${{ github.token }}
+outputs:
+  new-upstream-version:
+    description: If the upstream repository has a newer release than the current one, this output parameter is populated with the semver version of it.
+    value: ${{ steps.check-upstream-release.outputs.new-upstream-version }}
+
+runs:
+  using: composite
+  steps:
+    - name: Check upstream release
+      id: check-upstream-release
+      env:
+        UPSTREAM_REPOSITORY: ${{ inputs.upstream-repository }}
+        CURRENT_REPOSITORY: ${{ inputs.current-repository }}
+        SEMVER_VERSION_CORE_REGEX: ${{ inputs.semver-version-core-regex }}
+        IF_CURRENT_RELEASE_NOT_FOUND: ${{ inputs.if-current-release-not-found }}
+        GITHUB_TOKEN: ${{ inputs.token }}
+      run: $GITHUB_ACTION_PATH/check.sh
+      shell: bash
