@@ -43,18 +43,18 @@ jobs:
 
 The following inputs can be used as `step.with` keys:
 
-| Name                         | Type   | Required | Description                                                                                                                                                                                                            |
-| ---------------------------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| upstream-repository          | string | true     | The upstream repository                                                                                                                                                                                                |
-| current-repository           | string | false    | The current repository.<br/>Default: `${{ github.repository }}`                                                                                                                                                               |
-| semver-version-core-regex    | string | false    | The regex expression used to match the semver version core (MAJOR.MINOR.PATCH) from the relase tag name.<br/>Default: `(0\|[1-9][0-9]*)\.(0\|[1-9][0-9]*)\.(0\|[1-9][0-9]*)`                                           |
-| if-current-release-not-found | string | false    | What to do if the current release is not found.<br/>Available options:<br/> lowest-version: use "0.0.0" as the current release version<br/> error: fail the action with an error message<br/>Default: `lowest-version` |
-| token                        | string | false    | The GitHub token used to make authenticated API requests.<br/>Default: `${{ github.token }}`                                                                                                                                  |
+| Name                           | Type   | Required | Description                                                                                                                                                                                                            |
+| ------------------------------ | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `upstream-repository`          | string | true     | The upstream repository                                                                                                                                                                                                |
+| `current-repository`           | string | false    | The current repository.<br/>Default: `${{ github.repository }}`                                                                                                                                                        |
+| `semver-version-core-regex`    | string | false    | The regex expression used to match the semver version core (MAJOR.MINOR.PATCH) from the relase tag name.<br/>Default: `(0\|[1-9][0-9]*)\.(0\|[1-9][0-9]*)\.(0\|[1-9][0-9]*)`                                           |
+| `if-current-release-not-found` | string | false    | What to do if the current release is not found.<br/>Available options:<br/> lowest-version: use "0.0.0" as the current release version<br/> error: fail the action with an error message<br/>Default: `lowest-version` |
+| `token`                        | string | false    | The GitHub token used to make authenticated API requests.<br/>Default: `${{ github.token }}`                                                                                                                           |
 
 ### Outputs
 
 The following outputs can be accessed via `${{ steps.<step-id>.outputs }}`:
 
-| Name                 | Type   | Description                                                                                                                               |
-| -------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| new-upstream-version | string | If the upstream repository has a newer release than the current one, this output parameter is populated with tag name of the new release. |
+| Name                   | Type   | Description                                                                                                                               |
+| ---------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `new-upstream-version` | string | If the upstream repository has a newer release than the current one, this output parameter is populated with tag name of the new release. |
