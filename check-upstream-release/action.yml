@@ -10,11 +10,9 @@ inputs:
     required: true
   current-repository:
     description: The current repository
-    required: true
     default: ${{ github.repository }}
   semver-version-core-regex:
     description: The regex expression used to match the semver version core (MAJOR.MINOR.PATCH) from the relase tag name
-    required: true
     default: (0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)
   if-current-release-not-found:
     description: >
@@ -22,11 +20,9 @@ inputs:
       Available options:
         lowest-version: use "0.0.0" as the current release version
         error: fail the action with an error message
-    required: true
     default: lowest-version
   token:
     description: The GitHub token used to make authenticated API requests. Default is ${{ github.token }}
-    required: true
     default: ${{ github.token }}
 outputs:
   new-upstream-version:
