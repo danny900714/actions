@@ -22,7 +22,7 @@ inputs:
         error: fail the action with an error message
     default: lowest-version
   token:
-    description: The GitHub token used to make authenticated API requests. Default is ${{ github.token }}
+    description: The GitHub token used to make authenticated API requests. Default is the workflow's GITHUB_TOKEN.
     default: ${{ github.token }}
 outputs:
   new-upstream-version:
