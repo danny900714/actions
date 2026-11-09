@@ -20,7 +20,7 @@ inputs:
     description: >
       What to do if the current release is not found.
       Available options:
-        lowest-vserion: use "0.0.0" as the current release version
+        lowest-version: use "0.0.0" as the current release version
         error: fail the action with an error message
     required: true
     default: lowest-version
@@ -30,7 +30,7 @@ inputs:
     default: ${{ github.token }}
 outputs:
   new-upstream-version:
-    description: If the upstream repository has a newer release than the current one, this output parameter is populated with the semver version of it.
+    description: If the upstream repository has a newer release than the current one, this output parameter is populated with tag name of the new release.
     value: ${{ steps.check-upstream-release.outputs.new-upstream-version }}
 
 runs:
